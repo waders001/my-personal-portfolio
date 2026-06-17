@@ -10,29 +10,29 @@
   <meta name="referrer" content="strict-origin-when-cross-origin" />
 
   <!-- EDIT: title shown in the browser tab and in Google results -->
-  <title>Sam Avery — Frontend Engineer</title>
+  <title>Wade Tubbs — Software Engineer</title>
 
   <!-- EDIT: one sentence Google + LinkedIn/Slack previews will show -->
-  <meta name="description" content="Frontend engineer building fast, accessible web apps. Open to senior roles." />
+  <meta name="description" content="Software engineer building fast, accessible web apps. Open to new opportunities." />
 
   <!-- EDIT: link previews when you paste your URL into Slack / iMessage / LinkedIn -->
   <meta property="og:type" content="website" />
-  <meta property="og:title" content="Sam Avery — Frontend Engineer" />
-  <meta property="og:description" content="Frontend engineer building fast, accessible web apps. Open to senior roles." />
+  <meta property="og:title" content="Wade Tubbs — Software Engineer" />
+  <meta property="og:description" content="Software engineer building fast, accessible web apps. Open to new opportunities." />
   <!-- EDIT: replace BOTH of these with your real site URL once deployed.
        og:image must be an ABSOLUTE url (https://...), not a relative path,
        or LinkedIn/Slack will not show the preview image. -->
-  <meta property="og:url" content="https://your-site.example/" />
-  <meta property="og:image" content="https://your-site.example/og-image.png" />
+  <meta property="og:url" content="https://wadetubbs.example/" />
+  <meta property="og:image" content="https://wadetubbs.example/og-image.png" />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Sam Avery — Frontend Engineer" />
-  <meta name="twitter:description" content="Frontend engineer building fast, accessible web apps." />
-  <meta name="twitter:image" content="https://your-site.example/og-image.png" />
+  <meta name="twitter:title" content="Wade Tubbs — Software Engineer" />
+  <meta name="twitter:description" content="Software engineer building fast, accessible web apps." />
+  <meta name="twitter:image" content="https://wadetubbs.example/og-image.png" />
 
   <!-- EDIT: your name -->
-  <meta name="author" content="Sam Avery" />
+  <meta name="author" content="Wade Tubbs" />
   <!-- EDIT: your real URL, helps search engines pick the canonical address -->
-  <link rel="canonical" href="https://your-site.example/" />
+  <link rel="canonical" href="https://wadetubbs.example/" />
 
   <meta name="theme-color" media="(prefers-color-scheme: light)" content="#FAFAF8" />
   <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#0E0F12" />
@@ -320,8 +320,29 @@
     /* ---- Stack ---- */
     .stack { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 26px 32px; }
     .stack .group .meta { display: block; margin-bottom: 10px; color: var(--faint); }
+    .stack-note { margin: -16px 0 26px; }
     .stack ul { margin: 0; padding: 0; list-style: none; }
-    .stack li { padding: 3px 0; color: var(--ink); }
+    .stack li {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 5px 0;
+      color: var(--ink);
+    }
+    .skill-name { flex: 1 1 auto; min-width: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+    /* Skill-level meter: small filled/unfilled segments per skill.
+       role="img" + aria-label on the wrapper so screen readers get one
+       sentence instead of five empty <i> elements. */
+    .skill-bar { display: inline-flex; gap: 3px; flex: 0 0 auto; }
+    .skill-bar .seg {
+      width: 10px;
+      height: 6px;
+      border-radius: 2px;
+      background: var(--hairline);
+    }
+    .skill-bar .seg.on { background: var(--accent); }
 
     /* ---- Contact ---- */
     .contact .prose { margin-bottom: 22px; }
@@ -358,7 +379,7 @@
   <header class="bar" id="bar">
     <div class="wrap">
       <!-- EDIT: your initials / short handle -->
-      <a class="brand" href="#top">sam<span>_</span>avery</a>
+      <a class="brand" href="#top">wade<span>_</span>tubbs</a>
       <nav class="nav" aria-label="Sections">
         <a href="#work" class="nav-keep">work</a>
         <a href="#experience">experience</a>
@@ -373,22 +394,22 @@
     <section class="hero">
       <div class="wrap">
         <!-- EDIT: your name -->
-        <h1 class="reveal">Sam Avery</h1>
+        <h1 class="reveal">Wade Tubbs</h1>
 
         <!-- EDIT: one line — what you do, said plainly -->
-        <p class="lede reveal">Frontend engineer building fast, accessible web apps.</p>
+        <p class="lede reveal">Software engineer building fast, accessible web apps.</p>
 
         <!-- EDIT: your current status. This monospace line is the signature touch. -->
         <p class="status reveal">
-          <span class="tilde">~</span>open to senior roles · remote or Indianapolis<span class="cursor" aria-hidden="true"></span>
+          <span class="tilde">~</span>open to new opportunities · remote<span class="cursor" aria-hidden="true"></span>
         </p>
 
         <div class="actions reveal">
           <a class="btn primary" href="#work">View work</a>
           <!-- EDIT: your email -->
-          <a class="btn" href="mailto:you@example.com">Email</a>
+          <a class="btn" href="mailto:waderyantubbs15@yahoo.com">Email</a>
           <!-- EDIT: your GitHub -->
-          <a class="btn" href="https://github.com/yourname" target="_blank" rel="noopener noreferrer">GitHub</a>
+          <a class="btn" href="https://github.com/wadetubbs" target="_blank" rel="noopener noreferrer">GitHub</a>
         </div>
       </div>
     </section>
@@ -464,10 +485,10 @@
       <div class="wrap">
         <p class="eyebrow reveal">About</p>
         <h2 class="reveal">A bit more</h2>
-        <!-- EDIT: 2–3 sentences. Be specific. Who you are, what you care about. -->
+        <!-- EDIT: 2–3 sentences. Be specific. Who you are, what you care about. PLACEHOLDER — replace with your real background. -->
         <div class="prose reveal">
-          <p>I'm a frontend engineer with six years of experience shipping interfaces that stay fast under real-world load. I care most about performance budgets, accessibility, and design systems that let small teams move quickly without things drifting.</p>
-          <p>Lately I've been going deep on the edges of the web platform — offline-first data, view transitions, and the parts of CSS people forget exist. Outside work you'll find me restoring old mechanical keyboards.</p>
+          <p>I'm a software engineer who likes building interfaces that stay fast under real-world load. I care most about performance budgets, accessibility, and design systems that let small teams move quickly without things drifting.</p>
+          <p>Lately I've been going deep on the edges of the web platform — offline-first data, view transitions, and the parts of CSS people forget exist. Outside work you'll find me tinkering with side projects.</p>
         </div>
       </div>
     </section>
@@ -510,23 +531,48 @@
       <div class="wrap">
         <p class="eyebrow reveal">Stack</p>
         <h2 class="reveal">What I reach for</h2>
-        <!-- EDIT: group your tools however makes sense for you -->
+        <p class="meta stack-note reveal">Filled segments show relative proficiency, not certification — 5 of 5 means daily driver.</p>
+        <!--
+          EDIT: group your tools however makes sense for you. Each <li> is:
+          <span class="skill-name">Name</span> + a .skill-bar with 5 <i class="seg">
+          segments (add "on" to the filled ones) and an aria-label stating the level.
+        -->
         <div class="stack reveal">
           <div class="group">
             <span class="meta">Languages</span>
-            <ul><li>TypeScript</li><li>JavaScript</li><li>HTML &amp; CSS</li><li>Rust (learning)</li></ul>
+            <ul>
+              <li><span class="skill-name">TypeScript</span><span class="skill-bar" role="img" aria-label="Proficiency: 5 of 5"><i class="seg on"></i><i class="seg on"></i><i class="seg on"></i><i class="seg on"></i><i class="seg on"></i></span></li>
+              <li><span class="skill-name">JavaScript</span><span class="skill-bar" role="img" aria-label="Proficiency: 5 of 5"><i class="seg on"></i><i class="seg on"></i><i class="seg on"></i><i class="seg on"></i><i class="seg on"></i></span></li>
+              <li><span class="skill-name">HTML &amp; CSS</span><span class="skill-bar" role="img" aria-label="Proficiency: 5 of 5"><i class="seg on"></i><i class="seg on"></i><i class="seg on"></i><i class="seg on"></i><i class="seg on"></i></span></li>
+              <li><span class="skill-name">Rust (learning)</span><span class="skill-bar" role="img" aria-label="Proficiency: 2 of 5"><i class="seg on"></i><i class="seg on"></i><i class="seg"></i><i class="seg"></i><i class="seg"></i></span></li>
+            </ul>
           </div>
           <div class="group">
             <span class="meta">Frameworks</span>
-            <ul><li>React</li><li>Next.js</li><li>Svelte</li><li>Astro</li></ul>
+            <ul>
+              <li><span class="skill-name">React</span><span class="skill-bar" role="img" aria-label="Proficiency: 5 of 5"><i class="seg on"></i><i class="seg on"></i><i class="seg on"></i><i class="seg on"></i><i class="seg on"></i></span></li>
+              <li><span class="skill-name">Next.js</span><span class="skill-bar" role="img" aria-label="Proficiency: 4 of 5"><i class="seg on"></i><i class="seg on"></i><i class="seg on"></i><i class="seg on"></i><i class="seg"></i></span></li>
+              <li><span class="skill-name">Svelte</span><span class="skill-bar" role="img" aria-label="Proficiency: 3 of 5"><i class="seg on"></i><i class="seg on"></i><i class="seg on"></i><i class="seg"></i><i class="seg"></i></span></li>
+              <li><span class="skill-name">Astro</span><span class="skill-bar" role="img" aria-label="Proficiency: 3 of 5"><i class="seg on"></i><i class="seg on"></i><i class="seg on"></i><i class="seg"></i><i class="seg"></i></span></li>
+            </ul>
           </div>
           <div class="group">
             <span class="meta">Tooling</span>
-            <ul><li>Vite</li><li>Playwright</li><li>Storybook</li><li>Figma</li></ul>
+            <ul>
+              <li><span class="skill-name">Vite</span><span class="skill-bar" role="img" aria-label="Proficiency: 4 of 5"><i class="seg on"></i><i class="seg on"></i><i class="seg on"></i><i class="seg on"></i><i class="seg"></i></span></li>
+              <li><span class="skill-name">Playwright</span><span class="skill-bar" role="img" aria-label="Proficiency: 4 of 5"><i class="seg on"></i><i class="seg on"></i><i class="seg on"></i><i class="seg on"></i><i class="seg"></i></span></li>
+              <li><span class="skill-name">Storybook</span><span class="skill-bar" role="img" aria-label="Proficiency: 3 of 5"><i class="seg on"></i><i class="seg on"></i><i class="seg on"></i><i class="seg"></i><i class="seg"></i></span></li>
+              <li><span class="skill-name">Figma</span><span class="skill-bar" role="img" aria-label="Proficiency: 3 of 5"><i class="seg on"></i><i class="seg on"></i><i class="seg on"></i><i class="seg"></i><i class="seg"></i></span></li>
+            </ul>
           </div>
           <div class="group">
             <span class="meta">Also</span>
-            <ul><li>Node.js</li><li>PostgreSQL</li><li>Cloudflare</li><li>CI/CD</li></ul>
+            <ul>
+              <li><span class="skill-name">Node.js</span><span class="skill-bar" role="img" aria-label="Proficiency: 4 of 5"><i class="seg on"></i><i class="seg on"></i><i class="seg on"></i><i class="seg on"></i><i class="seg"></i></span></li>
+              <li><span class="skill-name">PostgreSQL</span><span class="skill-bar" role="img" aria-label="Proficiency: 3 of 5"><i class="seg on"></i><i class="seg on"></i><i class="seg on"></i><i class="seg"></i><i class="seg"></i></span></li>
+              <li><span class="skill-name">Cloudflare</span><span class="skill-bar" role="img" aria-label="Proficiency: 3 of 5"><i class="seg on"></i><i class="seg on"></i><i class="seg on"></i><i class="seg"></i><i class="seg"></i></span></li>
+              <li><span class="skill-name">CI/CD</span><span class="skill-bar" role="img" aria-label="Proficiency: 4 of 5"><i class="seg on"></i><i class="seg on"></i><i class="seg on"></i><i class="seg on"></i><i class="seg"></i></span></li>
+            </ul>
           </div>
         </div>
       </div>
@@ -543,9 +589,9 @@
         </div>
         <div class="actions reveal">
           <!-- EDIT: all of these -->
-          <a class="btn primary" href="mailto:you@example.com">you@example.com</a>
-          <a class="btn" href="https://github.com/yourname" target="_blank" rel="noopener noreferrer">GitHub</a>
-          <a class="btn" href="https://linkedin.com/in/yourname" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+          <a class="btn primary" href="mailto:waderyantubbs15@yahoo.com">waderyantubbs15@yahoo.com</a>
+          <a class="btn" href="https://github.com/wadetubbs" target="_blank" rel="noopener noreferrer">GitHub</a>
+          <a class="btn" href="https://linkedin.com/in/wadetubbs" target="_blank" rel="noopener noreferrer">LinkedIn</a>
           <!-- EDIT: link to a hosted PDF of your résumé, or remove this -->
           <a class="btn" href="#">Résumé</a>
         </div>
@@ -557,7 +603,7 @@
   <footer>
     <div class="wrap">
       <!-- EDIT -->
-      <span class="meta">Built by Sam Avery</span>
+      <span class="meta">Built by Wade Tubbs</span>
       <span class="meta"><a href="#top">Back to top ↑</a></span>
     </div>
   </footer>
