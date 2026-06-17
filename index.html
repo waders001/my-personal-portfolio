@@ -1,0 +1,655 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <!-- Security: locks the page down to only the resources it actually uses.
+       If you add a script/style/image from another domain, allow it here. -->
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; script-src 'self' 'unsafe-inline'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'; upgrade-insecure-requests" />
+  <meta name="referrer" content="strict-origin-when-cross-origin" />
+
+  <!-- EDIT: title shown in the browser tab and in Google results -->
+  <title>Sam Avery — Frontend Engineer</title>
+
+  <!-- EDIT: one sentence Google + LinkedIn/Slack previews will show -->
+  <meta name="description" content="Frontend engineer building fast, accessible web apps. Open to senior roles." />
+
+  <!-- EDIT: link previews when you paste your URL into Slack / iMessage / LinkedIn -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Sam Avery — Frontend Engineer" />
+  <meta property="og:description" content="Frontend engineer building fast, accessible web apps. Open to senior roles." />
+  <!-- EDIT: replace BOTH of these with your real site URL once deployed.
+       og:image must be an ABSOLUTE url (https://...), not a relative path,
+       or LinkedIn/Slack will not show the preview image. -->
+  <meta property="og:url" content="https://your-site.example/" />
+  <meta property="og:image" content="https://your-site.example/og-image.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Sam Avery — Frontend Engineer" />
+  <meta name="twitter:description" content="Frontend engineer building fast, accessible web apps." />
+  <meta name="twitter:image" content="https://your-site.example/og-image.png" />
+
+  <!-- EDIT: your name -->
+  <meta name="author" content="Sam Avery" />
+  <!-- EDIT: your real URL, helps search engines pick the canonical address -->
+  <link rel="canonical" href="https://your-site.example/" />
+
+  <meta name="theme-color" media="(prefers-color-scheme: light)" content="#FAFAF8" />
+  <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#0E0F12" />
+
+  <!-- Tiny inline favicon: a monospace prompt mark. No external file needed. -->
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%2315161A'/%3E%3Ctext x='16' y='22' font-family='monospace' font-size='17' fill='%232B4FE0' text-anchor='middle'%3E&gt;_%3C/text%3E%3C/svg%3E" />
+
+  <!-- Fonts load from the browser; nothing to install. Robust fallbacks below. -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --paper:    #FAFAF8;
+      --paper-2:  #F2F2EE;   /* faint panel fill */
+      --ink:      #15161A;
+      --muted:    #62646C;
+      --faint:    #6E7077;
+      --hairline: #E5E5E0;
+      --accent:   #2B4FE0;
+      --accent-soft: rgba(43, 79, 224, 0.08);
+
+      --sans: "Space Grotesk", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+      --mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+
+      --col: 760px;          /* readable content width */
+      --gut: clamp(20px, 5vw, 40px);
+    }
+
+    /* Automatic dark mode — follows the visitor's system setting. */
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --paper:    #0E0F12;
+        --paper-2:  #16181D;
+        --ink:      #ECEDEF;
+        --muted:    #9DA0A9;
+        --faint:    #81848D;
+        --hairline: #24262C;
+        --accent:   #7E97FF;
+        --accent-soft: rgba(126, 151, 255, 0.12);
+      }
+    }
+
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+    }
+
+    body {
+      margin: 0;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: var(--sans);
+      font-size: 17px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+    }
+
+    .wrap {
+      width: 100%;
+      max-width: var(--col);
+      margin-inline: auto;
+      padding-inline: var(--gut);
+    }
+
+    a { color: inherit; }
+
+    /* Keyboard users get a clear, on-brand focus ring everywhere. */
+    :focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 3px;
+      border-radius: 2px;
+    }
+
+    .skip {
+      position: absolute;
+      left: -999px;
+      top: 0;
+      background: var(--ink);
+      color: var(--paper);
+      padding: 10px 14px;
+      font-family: var(--mono);
+      font-size: 13px;
+      z-index: 50;
+    }
+    .skip:focus { left: 12px; top: 12px; }
+
+    /* ---- shared structural type ---- */
+    .eyebrow {
+      font-family: var(--mono);
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--faint);
+      margin: 0 0 22px;
+    }
+    .meta { font-family: var(--mono); font-size: 13px; color: var(--faint); }
+
+    /* =========================================================
+       TOP BAR
+       ========================================================= */
+    .bar {
+      position: sticky;
+      top: 0;
+      z-index: 40;
+      background: var(--paper); /* fallback if color-mix unsupported */
+      background: color-mix(in srgb, var(--paper) 86%, transparent);
+      -webkit-backdrop-filter: saturate(150%) blur(8px);
+      backdrop-filter: saturate(150%) blur(8px);
+      border-bottom: 1px solid transparent;
+      transition: border-color .25s ease;
+    }
+    .bar.scrolled { border-bottom-color: var(--hairline); }
+    .bar .wrap {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 60px;
+    }
+    .brand {
+      font-family: var(--mono);
+      font-size: 14px;
+      font-weight: 500;
+      letter-spacing: -0.01em;
+      text-decoration: none;
+    }
+    .brand span { color: var(--accent); }
+    .nav {
+      display: flex;
+      gap: 22px;
+      font-family: var(--mono);
+      font-size: 13px;
+    }
+    .nav a {
+      text-decoration: none;
+      color: var(--muted);
+      padding: 4px 2px;
+      transition: color .15s ease;
+    }
+    .nav a:hover { color: var(--ink); }
+    .nav a[aria-current="true"] { color: var(--ink); }
+    .nav a[aria-current="true"]::after {
+      content: "";
+      display: block;
+      height: 2px;
+      margin-top: 3px;
+      background: var(--accent);
+    }
+    @media (max-width: 560px) { .nav a:not(.nav-keep) { display: none; } }
+
+    /* =========================================================
+       HERO  — the page's thesis
+       ========================================================= */
+    .hero { padding-top: clamp(64px, 13vw, 120px); padding-bottom: clamp(48px, 9vw, 88px); }
+    .hero h1 {
+      font-size: clamp(2.5rem, 7.5vw, 4.2rem);
+      font-weight: 600;
+      line-height: 1.02;
+      letter-spacing: -0.03em;
+      margin: 0 0 18px;
+    }
+    .lede {
+      font-size: clamp(1.1rem, 2.6vw, 1.4rem);
+      line-height: 1.45;
+      color: var(--ink);
+      max-width: 30ch;
+      margin: 0 0 30px;
+      font-weight: 400;
+    }
+
+    /* the signature element: a monospace status line */
+    .status {
+      font-family: var(--mono);
+      font-size: 14px;
+      color: var(--muted);
+      display: inline-flex;
+      align-items: baseline;
+      gap: 2px;
+      margin: 0 0 34px;
+    }
+    .status .tilde { color: var(--accent); margin-right: 8px; }
+    .cursor {
+      display: inline-block;
+      width: 8px;
+      height: 1.05em;
+      transform: translateY(2px);
+      background: var(--accent);
+      margin-left: 4px;
+      animation: blink 1.05s steps(1) infinite;
+    }
+    @keyframes blink { 50% { opacity: 0; } }
+    @media (prefers-reduced-motion: reduce) { .cursor { animation: none; } }
+
+    .actions { display: flex; flex-wrap: wrap; gap: 10px; }
+    .btn {
+      font-family: var(--mono);
+      font-size: 13px;
+      text-decoration: none;
+      padding: 9px 15px;
+      border: 1px solid var(--hairline);
+      border-radius: 7px;
+      color: var(--ink);
+      background: transparent;
+      transition: border-color .15s ease, background .15s ease, color .15s ease;
+    }
+    .btn:hover { border-color: var(--ink); }
+    .btn.primary { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+    .btn.primary:hover { background: var(--accent); border-color: var(--accent); }
+
+    /* =========================================================
+       SECTIONS
+       ========================================================= */
+    .section { padding-block: clamp(48px, 9vw, 80px); border-top: 1px solid var(--hairline); scroll-margin-top: 76px; }
+    .section h2 {
+      font-size: clamp(1.35rem, 3vw, 1.7rem);
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      margin: 0 0 26px;
+    }
+    .prose { color: var(--ink); max-width: 56ch; }
+    .prose p { margin: 0 0 1em; }
+    .prose p:last-child { margin-bottom: 0; }
+    .prose a { color: var(--accent); text-decoration: none; border-bottom: 1px solid var(--accent-soft); }
+    .prose a:hover { border-bottom-color: var(--accent); }
+
+    /* ---- Work ---- */
+    .project {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 6px 28px;
+      padding: 26px 0;
+      border-top: 1px solid var(--hairline);
+    }
+    .project:first-of-type { border-top: 0; }
+    .project:hover .p-title { color: var(--accent); }
+    .p-title {
+      font-size: 1.25rem;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      margin: 0;
+      transition: color .15s ease;
+    }
+    .p-desc { color: var(--muted); margin: 6px 0 0; max-width: 46ch; }
+    .p-side { grid-row: 1 / span 3; text-align: right; white-space: nowrap; padding-top: 4px; }
+    .p-side .meta { display: block; }
+    .p-side .meta + .meta { margin-top: 2px; color: var(--muted); }
+    .tags { display: flex; flex-wrap: wrap; gap: 6px; margin: 14px 0 0; padding: 0; list-style: none; }
+    .tags li {
+      font-family: var(--mono);
+      font-size: 11.5px;
+      color: var(--muted);
+      border: 1px solid var(--hairline);
+      border-radius: 5px;
+      padding: 3px 8px;
+    }
+    .p-links { display: flex; gap: 16px; margin: 14px 0 0; font-family: var(--mono); font-size: 13px; }
+    .p-links a { color: var(--ink); text-decoration: none; display: inline-flex; align-items: center; gap: 5px; }
+    .p-links a:hover { color: var(--accent); }
+    .p-links a .arr { transition: transform .15s ease; }
+    .p-links a:hover .arr { transform: translate(2px, -2px); }
+
+    @media (max-width: 560px) {
+      .project { grid-template-columns: 1fr; }
+      .p-side { grid-row: auto; text-align: left; order: -1; padding-top: 0; margin-bottom: 4px; }
+      .p-side .meta { display: inline; }
+      .p-side .meta + .meta::before { content: " · "; }
+    }
+
+    /* ---- Experience ---- */
+    .role { display: grid; grid-template-columns: 1fr auto; gap: 4px 24px; padding: 16px 0; border-top: 1px solid var(--hairline); }
+    .role:first-of-type { border-top: 0; }
+    .role h3 { font-size: 1.02rem; font-weight: 600; margin: 0; }
+    .role .where { color: var(--muted); margin: 2px 0 0; font-size: 0.95rem; }
+    .role .when { font-family: var(--mono); font-size: 13px; color: var(--faint); text-align: right; white-space: nowrap; }
+    @media (max-width: 560px) {
+      .role { grid-template-columns: 1fr; }
+      .role .when { text-align: left; order: -1; }
+    }
+
+    /* ---- Stack ---- */
+    .stack { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 26px 32px; }
+    .stack .group .meta { display: block; margin-bottom: 10px; color: var(--faint); }
+    .stack ul { margin: 0; padding: 0; list-style: none; }
+    .stack li { padding: 3px 0; color: var(--ink); }
+
+    /* ---- Contact ---- */
+    .contact .prose { margin-bottom: 22px; }
+    .contact .actions { gap: 10px; }
+
+    /* ---- Footer ---- */
+    footer { border-top: 1px solid var(--hairline); padding-block: 34px; }
+    footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; }
+    footer .meta a { color: var(--muted); text-decoration: none; }
+    footer .meta a:hover { color: var(--ink); }
+
+    /* ---- scroll reveal (progressive enhancement only) ---- */
+    .reveal { opacity: 0; transform: translateY(10px); transition: opacity .6s ease, transform .6s ease; }
+    .reveal.in { opacity: 1; transform: none; }
+    @media (prefers-reduced-motion: reduce) {
+      .reveal { opacity: 1; transform: none; transition: none; }
+    }
+
+    /* Clean printout (e.g. if someone saves the page as PDF). */
+    @media print {
+      .bar, .cursor, .actions, .skip { display: none !important; }
+      body { font-size: 12pt; color: #000; background: #fff; }
+      .reveal { opacity: 1 !important; transform: none !important; }
+      .section, .hero { padding-block: 18px; }
+      a { color: #000; text-decoration: underline; }
+      .p-links a::after { content: " (" attr(href) ")"; font-size: 9pt; color: #555; }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip" href="#top">Skip to content</a>
+
+  <!-- ===================== TOP BAR ===================== -->
+  <header class="bar" id="bar">
+    <div class="wrap">
+      <!-- EDIT: your initials / short handle -->
+      <a class="brand" href="#top">sam<span>_</span>avery</a>
+      <nav class="nav" aria-label="Sections">
+        <a href="#work" class="nav-keep">work</a>
+        <a href="#experience">experience</a>
+        <a href="#stack">stack</a>
+        <a href="#contact" class="nav-keep">contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top">
+    <!-- ===================== HERO ===================== -->
+    <section class="hero">
+      <div class="wrap">
+        <!-- EDIT: your name -->
+        <h1 class="reveal">Sam Avery</h1>
+
+        <!-- EDIT: one line — what you do, said plainly -->
+        <p class="lede reveal">Frontend engineer building fast, accessible web apps.</p>
+
+        <!-- EDIT: your current status. This monospace line is the signature touch. -->
+        <p class="status reveal">
+          <span class="tilde">~</span>open to senior roles · remote or Indianapolis<span class="cursor" aria-hidden="true"></span>
+        </p>
+
+        <div class="actions reveal">
+          <a class="btn primary" href="#work">View work</a>
+          <!-- EDIT: your email -->
+          <a class="btn" href="mailto:you@example.com">Email</a>
+          <!-- EDIT: your GitHub -->
+          <a class="btn" href="https://github.com/yourname" target="_blank" rel="noopener noreferrer">GitHub</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== WORK ===================== -->
+    <section class="section" id="work">
+      <div class="wrap">
+        <p class="eyebrow reveal">Selected work</p>
+        <h2 class="reveal">Things I've built</h2>
+
+        <!--
+          EDIT: each <article class="project"> is one project.
+          Copy a whole block to add more, delete to remove.
+          Keep links pointing to a real demo or repo — recruiters click these.
+        -->
+        <article class="project reveal">
+          <div>
+            <h3 class="p-title">Ledger</h3>
+            <p class="p-desc">Open-source personal finance dashboard with offline-first sync. 4k+ stars on GitHub.</p>
+            <ul class="tags">
+              <li>React</li><li>TypeScript</li><li>IndexedDB</li><li>D3</li>
+            </ul>
+            <div class="p-links">
+              <a href="#">Live demo <span class="arr">↗</span></a>
+              <a href="#">Code <span class="arr">↗</span></a>
+            </div>
+          </div>
+          <div class="p-side">
+            <span class="meta">2025</span>
+            <span class="meta">Open source</span>
+          </div>
+        </article>
+
+        <article class="project reveal">
+          <div>
+            <h3 class="p-title">Northwind checkout</h3>
+            <p class="p-desc">Rebuilt a high-traffic checkout flow; cut time-to-interactive by 40% and lifted conversion 6%.</p>
+            <ul class="tags">
+              <li>Next.js</li><li>TypeScript</li><li>Stripe</li><li>Playwright</li>
+            </ul>
+            <div class="p-links">
+              <a href="#">Case study <span class="arr">↗</span></a>
+            </div>
+          </div>
+          <div class="p-side">
+            <span class="meta">2024</span>
+            <span class="meta">Work</span>
+          </div>
+        </article>
+
+        <article class="project reveal">
+          <div>
+            <h3 class="p-title">Tide</h3>
+            <p class="p-desc">Real-time collaborative markdown editor with conflict-free editing and a Rust sync server.</p>
+            <ul class="tags">
+              <li>Svelte</li><li>WebSockets</li><li>Rust</li><li>CRDT</li>
+            </ul>
+            <div class="p-links">
+              <a href="#">Live demo <span class="arr">↗</span></a>
+              <a href="#">Code <span class="arr">↗</span></a>
+            </div>
+          </div>
+          <div class="p-side">
+            <span class="meta">2023</span>
+            <span class="meta">Side project</span>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- ===================== ABOUT ===================== -->
+    <section class="section" id="about">
+      <div class="wrap">
+        <p class="eyebrow reveal">About</p>
+        <h2 class="reveal">A bit more</h2>
+        <!-- EDIT: 2–3 sentences. Be specific. Who you are, what you care about. -->
+        <div class="prose reveal">
+          <p>I'm a frontend engineer with six years of experience shipping interfaces that stay fast under real-world load. I care most about performance budgets, accessibility, and design systems that let small teams move quickly without things drifting.</p>
+          <p>Lately I've been going deep on the edges of the web platform — offline-first data, view transitions, and the parts of CSS people forget exist. Outside work you'll find me restoring old mechanical keyboards.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== EXPERIENCE ===================== -->
+    <section class="section" id="experience">
+      <div class="wrap">
+        <p class="eyebrow reveal">Experience</p>
+        <h2 class="reveal">Where I've worked</h2>
+
+        <!-- EDIT: one .role block per job. Keep it to the highlight, not a duty list. -->
+        <div class="role reveal">
+          <div>
+            <h3>Senior Frontend Engineer</h3>
+            <p class="where">Northwind — led the web performance guild</p>
+          </div>
+          <span class="when">2022 — Now</span>
+        </div>
+
+        <div class="role reveal">
+          <div>
+            <h3>Frontend Engineer</h3>
+            <p class="where">Brightloom — design system &amp; component library</p>
+          </div>
+          <span class="when">2019 — 2022</span>
+        </div>
+
+        <div class="role reveal">
+          <div>
+            <h3>Junior Developer</h3>
+            <p class="where">Freelance — small business sites &amp; tooling</p>
+          </div>
+          <span class="when">2018 — 2019</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== STACK ===================== -->
+    <section class="section" id="stack">
+      <div class="wrap">
+        <p class="eyebrow reveal">Stack</p>
+        <h2 class="reveal">What I reach for</h2>
+        <!-- EDIT: group your tools however makes sense for you -->
+        <div class="stack reveal">
+          <div class="group">
+            <span class="meta">Languages</span>
+            <ul><li>TypeScript</li><li>JavaScript</li><li>HTML &amp; CSS</li><li>Rust (learning)</li></ul>
+          </div>
+          <div class="group">
+            <span class="meta">Frameworks</span>
+            <ul><li>React</li><li>Next.js</li><li>Svelte</li><li>Astro</li></ul>
+          </div>
+          <div class="group">
+            <span class="meta">Tooling</span>
+            <ul><li>Vite</li><li>Playwright</li><li>Storybook</li><li>Figma</li></ul>
+          </div>
+          <div class="group">
+            <span class="meta">Also</span>
+            <ul><li>Node.js</li><li>PostgreSQL</li><li>Cloudflare</li><li>CI/CD</li></ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== CONTACT ===================== -->
+    <section class="section contact" id="contact">
+      <div class="wrap">
+        <p class="eyebrow reveal">Contact</p>
+        <h2 class="reveal">Let's talk</h2>
+        <div class="prose reveal">
+          <!-- EDIT -->
+          <p>I'm open to senior frontend roles and interesting contract work. The fastest way to reach me is email — I usually reply within a day.</p>
+        </div>
+        <div class="actions reveal">
+          <!-- EDIT: all of these -->
+          <a class="btn primary" href="mailto:you@example.com">you@example.com</a>
+          <a class="btn" href="https://github.com/yourname" target="_blank" rel="noopener noreferrer">GitHub</a>
+          <a class="btn" href="https://linkedin.com/in/yourname" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+          <!-- EDIT: link to a hosted PDF of your résumé, or remove this -->
+          <a class="btn" href="#">Résumé</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ===================== FOOTER ===================== -->
+  <footer>
+    <div class="wrap">
+      <!-- EDIT -->
+      <span class="meta">Built by Sam Avery</span>
+      <span class="meta"><a href="#top">Back to top ↑</a></span>
+    </div>
+  </footer>
+
+  <script>
+    // Progressive enhancement only — the page is fully readable without this.
+    (function () {
+      var bar = document.getElementById('bar');
+      var onScroll = function () {
+        bar.classList.toggle('scrolled', window.scrollY > 8);
+      };
+      window.addEventListener('scroll', onScroll, { passive: true });
+      onScroll();
+
+      var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      // Reveal-on-scroll
+      var reveals = document.querySelectorAll('.reveal');
+      if (reduce || !('IntersectionObserver' in window)) {
+        reveals.forEach(function (el) { el.classList.add('in'); });
+      } else {
+        var io = new IntersectionObserver(function (entries) {
+          entries.forEach(function (e) {
+            if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+          });
+        }, { rootMargin: '0px 0px -8% 0px', threshold: 0.1 });
+        reveals.forEach(function (el) { io.observe(el); });
+      }
+
+      // Scrollspy: highlight the nav link for the section in view
+      var navLinks = Array.prototype.slice.call(document.querySelectorAll('.nav a'));
+      var byId = {};
+      navLinks.forEach(function (a) { byId[a.getAttribute('href').slice(1)] = a; });
+      var targets = Object.keys(byId)
+        .map(function (id) { return document.getElementById(id); })
+        .filter(Boolean);
+
+      if ('IntersectionObserver' in window && targets.length) {
+        var spy = new IntersectionObserver(function (entries) {
+          entries.forEach(function (e) {
+            if (e.isIntersecting) {
+              navLinks.forEach(function (a) { a.removeAttribute('aria-current'); });
+              var link = byId[e.target.id];
+              if (link) link.setAttribute('aria-current', 'true');
+            }
+          });
+        }, { rootMargin: '-45% 0px -50% 0px' });
+        targets.forEach(function (t) { spy.observe(t); });
+      }
+    })();
+  </script>
+
+  <!--
+  ============================================================
+  DEPLOYING (all free)
+  ============================================================
+  Upload the WHOLE folder, not just this file. The set is:
+      index.html      ← this page
+      og-image.png    ← link-preview image (update the og:image URL above)
+      404.html        ← shown for bad links (served automatically)
+      robots.txt      ← lets search engines index you
+      _headers        ← security headers (Netlify + Cloudflare Pages)
+      vercel.json     ← security headers (Vercel only)
+
+  Pick a host:
+
+  • GitHub Pages
+      1. Create a repo, add these files, push.
+      2. Repo → Settings → Pages → Source: "Deploy from branch" → main / root.
+      3. Live at  https://<you>.github.io/<repo>/
+      (For a clean  https://<you>.github.io  URL, name the repo  <you>.github.io)
+      Note: GitHub Pages ignores _headers/vercel.json, but the Content-Security-
+      Policy <meta> tag in this file still protects the page.
+
+  • Netlify  (easiest)
+      Go to app.netlify.com/drop and drag the folder in. Done — _headers is
+      applied automatically. Free *.netlify.app URL; add a custom domain later.
+
+  • Cloudflare Pages
+      Connect the repo or drag-and-drop the folder. _headers is applied. No
+      build command — it's static. Output directory is the project root.
+
+  • Vercel
+      Import the repo (or drag-and-drop). vercel.json applies the headers.
+      No build command needed.
+
+  After deploying: update og:url, og:image, canonical, and robots.txt with
+  your real URL, then test the link preview at  https://www.opengraph.xyz
+
+  Custom domain: all of the above let you point your own domain for free
+  (you only pay your registrar for the domain itself).
+  ============================================================
+  -->
+</body>
+</html>

@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+# EDIT: once you know your URL, point this at it (optional but nice for SEO).
+# Sitemap: https://your-site.example/sitemap.xml

@@ -1,0 +1,16 @@
+# Security + caching headers.
+# WORKS ON: Netlify and Cloudflare Pages (drop this file at the site root).
+# Vercel users: use vercel.json instead (included). GitHub Pages cannot set
+# custom headers — the <meta> CSP in index.html still protects you there.
+
+/*
+  X-Content-Type-Options: nosniff
+  X-Frame-Options: DENY
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: camera=(), microphone=(), geolocation=(), interest-cohort=()
+  Strict-Transport-Security: max-age=63072000; includeSubDomains
+  Content-Security-Policy: default-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; script-src 'self' 'unsafe-inline'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'; upgrade-insecure-requests
+
+# Long-cache the image; it rarely changes.
+/og-image.png
+  Cache-Control: public, max-age=2592000

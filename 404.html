@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>404 — Not found</title>
+  <meta name="robots" content="noindex" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%2315161A'/%3E%3Ctext x='16' y='22' font-family='monospace' font-size='17' fill='%232B4FE0' text-anchor='middle'%3E&gt;_%3C/text%3E%3C/svg%3E" />
+  <style>
+    :root { --paper:#FAFAF8; --ink:#15161A; --muted:#62646C; --accent:#2B4FE0; }
+    @media (prefers-color-scheme: dark) {
+      :root { --paper:#0E0F12; --ink:#ECEDEF; --muted:#9DA0A9; --accent:#7E97FF; }
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0; min-height: 100vh; background: var(--paper); color: var(--ink);
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      gap: 18px; padding: 24px; text-align: center;
+      font-family: "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
+    }
+    .code {
+      font-family: "JetBrains Mono", ui-monospace, monospace;
+      font-size: 13px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent);
+    }
+    h1 { font-size: clamp(2rem, 7vw, 3rem); font-weight: 600; letter-spacing: -0.03em; margin: 0; }
+    p { color: var(--muted); margin: 0; max-width: 34ch; }
+    a {
+      font-family: "JetBrains Mono", ui-monospace, monospace; font-size: 13px;
+      text-decoration: none; color: var(--ink); border: 1px solid currentColor;
+      padding: 9px 15px; border-radius: 7px; margin-top: 6px;
+    }
+    a:hover { color: var(--accent); }
+    :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+  </style>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+</head>
+<body>
+  <span class="code">~ 404</span>
+  <h1>Page not found</h1>
+  <p>That link doesn't lead anywhere. Let's get you back.</p>
+  <a href="/">Return home</a>
+</body>
+</html>
